@@ -1,12 +1,20 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
+scalar JSON
+
     type User {
         id: ID!
         username: String!
         email: String!
+        isAdmin: Boolean!
         role: String!
         characterSheets: [CharacterSheet]
+    }
+
+    type AuthPayload {
+        token: String!
+        user: User!
     }
 
     type Event {
@@ -29,6 +37,12 @@ const typeDefs = gql`
 
     input CreateUserInput {
         username: String!
+        email: String!
+        password: String!
+        isAdmin: Boolean 
+    }
+
+    input LoginInput {
         email: String!
         password: String!
     }
@@ -55,10 +69,13 @@ const typeDefs = gql`
         event(id: ID!): Event
         characterSheets: [CharacterSheet]
         characterSheet(id: ID!): CharacterSheet
+        me: User
     }
 
     type Mutation {
-        createUser(input: CreateUserInput!): User
+        createUser(input: CreateUserInput!): AuthPayload
+        login(input: LoginInput!): AuthPayload
+        logout: Boolean
         createEvent(input: CreateEventInput!): Event
         createCharacter(input: CreateCharacterInput!): CharacterSheet
         signupForEvent(eventId: ID!, userId: ID!): Event

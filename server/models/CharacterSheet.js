@@ -1,11 +1,11 @@
-const mongoose = requore('mongoose');
+const mongoose = require('mongoose');
 
-const CharacterSheetSchema = new mongoose.Schema({
+const characterSheetSchema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     characterName: String,
     class: String,
     level: Number,
-    abilities: object,
+    abilities: Object,
     equipment: Array,
     
 });

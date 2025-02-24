@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const everntSchema = new mongoose.Schema({
+const eventSchema = new mongoose.Schema({
     title: String,
     date: Date,
     maxParticipants: Number,

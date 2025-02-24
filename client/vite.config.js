@@ -10,7 +10,7 @@ export default defineConfig ({
         //Set Vite client-side development server to proxy API requests to our server-side
         proxy: {
             '/graphql': {
-                target: 'http://localhost:3001',
+                target: 'http://localhost:4004',
                 changeOrigin: true,
                 secure:false,
             },
