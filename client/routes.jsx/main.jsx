@@ -11,15 +11,28 @@ import Navbar from '../components/Navbar.jsx'
 
 const router = createBrowserRouter({
     {
-        pathL'/',
+        path:'/',
         element:<App />,
         errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
-                element: 
-            }
-        ]
-    }
-})
+                element: <Home />
+            }, {
+                path: "login",
+                element: <Login />
+            }, {
+                path: "signup",
+                element: <Signup />
+            }, {
+                path: "dashboard", 
+                element: <ProtectedRoute element={<Dashboard />} /> 
+            }, {
+                path: "profile/:username",
+                element: <ProtectedRoute element={<Profile />} />
+            }, {path: "events",
+                element: <Events/>
+            },
+        ],
+});
 

@@ -1,19 +1,23 @@
-import decode from 'jwt-decode'
-
-class AuthService {
-    getProfile() {
-        return decode(this.getToken());
+class Auth {
+    login(token) {
+      localStorage.setItem('id_token', token);
+      window.location.assign('/dashboard'); // Redirect after login
     }
-
-
-    loggedIn() {
-        const token = this.getToken();
-        return token ? true : false;
+  
+    logout() {
+      localStorage.removeItem('id_token');
+      window.location.assign('/'); // Redirect to login page
     }
-
+  
     getToken() {
-        return localStorage.getItem('id_token');
+      return localStorage.getItem('id_token');
     }
-
-
-}
+  
+    loggedIn() {
+      const token = this.getToken();
+      return token ? true : false;
+    }
+  }
+  
+  export default new Auth();
+  
